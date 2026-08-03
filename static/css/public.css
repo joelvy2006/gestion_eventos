@@ -1,11 +1,11 @@
 :root {
-    --bg-dark: #111111;
-    --bg-soft: #1f1f1f;
-    --surface: #2a2a2a;
-    --accent: #d1d5db;
-    --accent-2: #f9fafb;
-    --text: #f8fafc;
-    --muted: #9ca3af;
+    --bg-dark: #000000;
+    --bg-soft: #000000;
+    --surface: #000000;
+    --accent: #ffffff;
+    --accent-2: #ffffff;
+    --text: #ffffff;
+    --muted: #ffffff;
     --border: rgba(255, 255, 255, 0.12);
 }
 
@@ -80,17 +80,36 @@ body {
 }
 
 .site-btn,
-.btn-primary {
+.btn-primary,
+.btn-login {
     background: linear-gradient(135deg, #4b5563, #9ca3af);
     color: #ffffff;
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .site-btn:hover,
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-login:hover {
     background: linear-gradient(135deg, #6b7280, #d1d5db);
+    transform: translateY(-1px);
+}
+
+.btn-login {
+    display: inline-block;
+    margin-left: 0.5rem;
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 8px 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btn-login:hover {
+    background: rgba(255,255,255,0.9) !important;
 }
 
 .login-section {
@@ -117,13 +136,26 @@ body {
     font-weight: 600;
 }
 
-.login-form input {
+.login-form input,
+.login-form input::placeholder {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: #f8fafc;
 }
 
+.login-form input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-top: 6px;
+}
+
+.login-form input::placeholder {
+    color: #cbd5e1;
+}
+
 .login-form input:focus {
     border-color: #9ca3af;
     box-shadow: 0 0 0 0.2rem rgba(156, 163, 175, 0.25);
+    outline: none;
 }

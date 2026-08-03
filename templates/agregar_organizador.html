@@ -2,7 +2,10 @@
 {% block title %}Agregar Organizador{% endblock %}
 {% block content %}
 <div class="container-fluid pt-4 px-4">
-    <h2>Nuevo Organizador</h2>
+    <div class="admin-page-header mb-4">
+        <img id="image-2" src="{% static 'img/logo.png' %}" alt="Imagen 2" style="display:block; margin:0 auto 12px auto; max-width:220px;">
+        <h2 class="text-center">Nuevo Organizador</h2>
+    </div>
     <form method="post">
         {% csrf_token %}
         <p>Nombre completo: <input type="text" name="nombre_completo" required class="form-control"></p>
@@ -12,5 +15,57 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{% url 'lista_organizadores' %}" class="btn btn-secondary">Cancelar</a>
     </form>
+
+    <!-- Secciones administrativas adicionales -->
+    <div class="admin-modules mt-5">
+        <nav class="mb-3">
+            <a href="#servicios" class="btn btn-link">Servicios</a>
+            <a href="#paquetes" class="btn btn-link">Paquetes</a>
+            <a href="#equipo" class="btn btn-link">Equipo</a>
+            <a href="#testimonios" class="btn btn-link">Testimonios</a>
+            <a href="#contacto" class="btn btn-link">Contacto</a>
+        </nav>
+
+        <section id="servicios" class="page-card p-4 mb-4">
+            <h3>Servicios</h3>
+            <p class="small-muted">Define los servicios que ofrece el organizador (sonido, catering, iluminación, etc.).</p>
+            <ul>
+                <li>Servicio A — <a href="#">Editar</a></li>
+                <li>Servicio B — <a href="#">Editar</a></li>
+            </ul>
+        </section>
+
+        <section id="paquetes" class="page-card p-4 mb-4">
+            <h3>Paquetes</h3>
+            <p class="small-muted">Agrupa servicios en paquetes y configura precios.</p>
+        </section>
+
+        <section id="equipo" class="page-card p-4 mb-4">
+            <h3>Equipo</h3>
+            <p class="small-muted">Información del equipo del organizador y roles.</p>
+        </section>
+
+        <section id="testimonios" class="page-card p-4 mb-4">
+            <h3>Testimonios</h3>
+            <p class="small-muted">Comentarios de clientes anteriores.</p>
+        </section>
+
+        <section id="contacto" class="page-card p-4 mb-4">
+            <h3>Contacto</h3>
+            <p class="small-muted">Formulario rápido de contacto para este organizador.</p>
+            <form>
+                <div class="mb-2">
+                    <input class="form-control" placeholder="Nombre" />
+                </div>
+                <div class="mb-2">
+                    <input class="form-control" placeholder="Correo" />
+                </div>
+                <div class="mb-2">
+                    <textarea class="form-control" rows="3" placeholder="Mensaje"></textarea>
+                </div>
+                <button class="btn btn-primary">Enviar</button>
+            </form>
+        </section>
+    </div>
 </div>
 {% endblock %}

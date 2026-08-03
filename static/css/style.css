@@ -41,7 +41,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  color: #111111;
+  color: #ffffff;
   font-weight: 400;
   font-family: "Play", sans-serif;
 }
@@ -73,7 +73,7 @@ h6 {
 p {
   font-size: 16px;
   font-family: "Josefin Sans", sans-serif;
-  color: #adadad;
+  color: #ffffff;
   font-weight: 400;
   line-height: 26px;
   margin: 0 0 15px 0;
@@ -137,7 +137,7 @@ ol {
   bottom: 0;
   height: 5px;
   width: 70px;
-  background: #00bfe7;
+  background: #ffffff;
   content: "";
 }
 
@@ -172,7 +172,8 @@ ol {
   font-family: "Play", sans-serif;
   font-weight: 700;
   padding: 14px 32px 12px;
-  color: #ffffff;
+  color: #000000;
+  background: #ffffff;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
@@ -192,8 +193,8 @@ ol {
   top: 0;
   height: 30px;
   width: 30px;
-  border-left: 2px solid #00bfe7;
-  border-top: 2px solid #00bfe7;
+  border-left: 2px solid #ffffff;
+  border-top: 2px solid #ffffff;
   content: "";
   z-index: -1;
   -webkit-transition: all, 0.7s;
@@ -206,8 +207,8 @@ ol {
   bottom: 0;
   height: 30px;
   width: 30px;
-  border-right: 2px solid #00bfe7;
-  border-bottom: 2px solid #00bfe7;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
   content: "";
   z-index: -1;
   -webkit-transition: all, 0.7s;
@@ -217,8 +218,8 @@ ol {
 
 .site-btn {
   font-size: 15px;
-  color: #ffffff;
-  background: #00bfe7;
+  color: #000000;
+  background: #ffffff;
   font-family: "Play", sans-serif;
   font-weight: 700;
   border: none;
@@ -237,7 +238,7 @@ ol {
   top: 0;
   left: 0;
   z-index: 999999;
-  background: #000;
+  background: #000000;
 }
 
 .loader {
@@ -257,36 +258,36 @@ ol {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-    border: 4px solid #f44336;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
   50% {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
-    border: 4px solid #673ab7;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
-    border: 4px solid #f44336;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
 }
 @-webkit-keyframes loader {
   0% {
     -webkit-transform: rotate(0deg);
-    border: 4px solid #f44336;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
   50% {
     -webkit-transform: rotate(180deg);
-    border: 4px solid #673ab7;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
   100% {
     -webkit-transform: rotate(360deg);
-    border: 4px solid #f44336;
+    border: 4px solid #ffffff;
     border-left-color: transparent;
   }
 }
@@ -364,7 +365,7 @@ ol {
 }
 .header__nav__menu ul li .dropdown li a {
   font-size: 14px;
-  color: #111111;
+  color: #000000;
   padding: 8px 20px;
   text-transform: capitalize;
 }
@@ -386,7 +387,7 @@ ol {
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: #00bfe7;
+  background: #ffffff;
   content: "";
   -webkit-transform: scale(0);
       -ms-transform: scale(0);

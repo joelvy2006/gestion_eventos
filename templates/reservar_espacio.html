@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Reservar espacio{% endblock %}
+
+{% block content %}
+
+<section class="spad">
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-7">
+
+                <div class="hero-card p-5">
+
+                    <h2 class="mb-3">
+                        Reservar {{ espacio.nombre }}
+                    </h2>
+
+
+                    <div class="mb-4">
+
+                        <p>
+                            <strong>Tipo:</strong> {{ espacio.tipo }}
+                        </p>
+
+                        <p>
+                            <strong>Capacidad:</strong> {{ espacio.capacidad }} personas
+                        </p>
+
+                        <p>
+                            <strong>Costo por hora:</strong> ${{ espacio.costo_hora }}
+                        </p>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Nombre del evento
+                            </label>
+
+                            {{ form.nombre_evento }}
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Organizador
+                            </label>
+
+                            {{ form.organizador }}
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Fecha de inicio
+                            </label>
+
+                            {{ form.fecha_inicio }}
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Fecha de fin
+                            </label>
+
+                            {{ form.fecha_fin }}
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Estado
+                            </label>
+
+                            {{ form.estado }}
+                        </div>
+
+
+                        <button type="submit" class="site-btn">
+                            Confirmar Reserva
+                        </button>
+
+
+                        <a href="{% url 'lista_publica' %}" 
+                           class="btn btn-secondary ms-2">
+                            Cancelar
+                        </a>
+
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

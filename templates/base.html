@@ -38,7 +38,12 @@
                                 <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Inicio</a></li>
                                 {% if user.is_authenticated %}
                                 <li><a href="{% url 'lista_espacios' %}">Administración</a></li>
-                                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                <li>
+                                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="nav-link btn btn-link p-0 text-decoration-none">Cerrar sesión</button>
+                                    </form>
+                                </li>
                                 {% else %}
                                 <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
                                 {% endif %}

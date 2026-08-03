@@ -28,7 +28,10 @@
                 <div class="navbar-nav w-100">
                     <a href="{% url 'lista_espacios' %}" class="nav-item nav-link active"><i class="fa fa-building me-2"></i>Espacios</a>
                     <a href="/" class="nav-item nav-link"><i class="fa fa-eye me-2"></i>Ver Sitio</a>
-                    <a href="{% url 'logout' %}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"></i>Cerrar Sesión</a>
+                    <form method="post" action="{% url 'logout' %}" class="m-0">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-item nav-link btn btn-link p-0 text-start"><i class="fa fa-sign-out-alt me-2"></i>Cerrar Sesión</button>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -43,7 +46,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                             <a href="/" class="dropdown-item">Ver sitio</a>
-                            <a href="{% url 'logout' %}" class="dropdown-item">Cerrar sesión</a>
+                            <form method="post" action="{% url 'logout' %}" class="m-0">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item btn btn-link p-0 text-start">Cerrar sesión</button>
+                            </form>
                         </div>
                     </div>
                 </div>

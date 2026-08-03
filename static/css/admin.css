@@ -1,11 +1,11 @@
 :root {
-    --bg-dark: #07111f;
-    --bg-soft: #111827;
-    --surface: #1f2937;
-    --accent: #4f46e5;
-    --accent-2: #00bfe7;
+    --bg-dark: #111111;
+    --bg-soft: #1f1f1f;
+    --surface: #2b2b2b;
+    --accent: #d1d5db;
+    --accent-2: #f9fafb;
     --text: #f8fafc;
-    --muted: #94a3b8;
+    --muted: #9ca3af;
     --border: rgba(255, 255, 255, 0.12);
 }
 
@@ -42,14 +42,14 @@ body {
 
 .sidebar .nav-link:hover,
 .sidebar .nav-link.active {
-    background: rgba(79, 70, 229, 0.25);
+    background: rgba(209, 213, 219, 0.18);
     color: #ffffff;
 }
 
 .content {
     flex: 1;
     min-height: 100vh;
-    background: linear-gradient(180deg, rgba(17,24,39,0.98), rgba(7,17,31,0.98));
+    background: linear-gradient(180deg, rgba(28, 28, 28, 0.98), rgba(18, 18, 18, 0.98));
 }
 
 .navbar-expand.bg-secondary {
@@ -62,13 +62,13 @@ body {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    border-color: var(--accent);
+    background: linear-gradient(135deg, #4b5563, #9ca3af);
+    border-color: #4b5563;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--accent-2), var(--accent));
-    border-color: var(--accent-2);
+    background: linear-gradient(135deg, #6b7280, #d1d5db);
+    border-color: #6b7280;
 }
 
 .page-card {

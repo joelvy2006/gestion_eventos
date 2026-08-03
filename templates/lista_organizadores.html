@@ -1,0 +1,20 @@
+{% extends "base_admin.html" %}
+{% block title %}Organizadores{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Organizadores</h2>
+    <a href="{% url 'agregar_organizador' %}" class="btn btn-primary mb-3">Agregar Nuevo</a>
+    <table class="table table-dark">
+        <tr><th>Nombre</th><th>Institución</th><th>Teléfono</th><th>Correo</th><th>Acciones</th></tr>
+        {% for o in organizadores %}
+        <tr>
+            <td>{{o.nombre_completo}}</td><td>{{o.institucion}}</td><td>{{o.telefono}}</td><td>{{o.correo}}</td>
+            <td>
+                <a href="{% url 'editar_organizador' o.id %}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{% url 'eliminar_organizador' o.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

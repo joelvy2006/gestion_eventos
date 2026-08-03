@@ -1,0 +1,49 @@
+{% extends "base_admin.html" %}
+{% block title %}Gestión de Espacios{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <div class="page-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-2">Gestión de Espacios</h2>
+                <p class="mb-0 small-muted">Administra tus espacios disponibles para eventos.</p>
+            </div>
+            <a href="{% url 'agregar_espacio' %}" class="btn btn-primary">Agregar Nuevo</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-dark align-middle">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Capacidad</th>
+                        <th>Costo</th>
+                        <th>Ubicación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in espacios %}
+                    <tr>
+                        <td>{{ e.nombre }}</td>
+                        <td>{{ e.tipo }}</td>
+                        <td>{{ e.capacidad }}</td>
+                        <td>${{ e.costo_hora }}</td>
+                        <td>{{ e.ubicacion }}</td>
+                        <td>
+                            <a href="{% url 'editar_espacio' e.id %}" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="{% url 'eliminar_espacio' e.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center small-muted">No hay espacios registrados aún.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

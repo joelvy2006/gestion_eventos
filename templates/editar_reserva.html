@@ -3,26 +3,53 @@
 {% block content %}
 <div class="container-fluid pt-4 px-4">
     <h2>Editar Reserva</h2>
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
-        <p>Nombre evento: <input type="text" name="nombre_evento" required class="form-control" value="{{reserva.nombre_evento}}"></p>
-        <p>Espacio: <select name="espacio" class="form-control">
-            {% for e in espacios %}
-                <option value="{{e.id}}" {% if reserva.espacio.id==e.id %}selected{% endif %}>{{e.nombre}} - {{e.ubicacion}}</option>
-            {% endfor %}
-        </select></p>
-        <p>Organizador: <select name="organizador" class="form-control">
-            {% for o in organizadores %}
-                <option value="{{o.id}}" {% if reserva.organizador.id==o.id %}selected{% endif %}>{{o.nombre_completo}}</option>
-            {% endfor %}
-        </select></p>
-        <p>Fecha inicio: <input type="datetime-local" name="fecha_inicio" class="form-control" value="{{reserva.fecha_inicio|date:'Y-m-d\TH:i'}}"></p>
-        <p>Fecha fin: <input type="datetime-local" name="fecha_fin" class="form-control" value="{{reserva.fecha_fin|date:'Y-m-d\TH:i'}}"></p>
-        <p>Estado: <select name="estado" class="form-control">
-            <option value="P" {% if reserva.estado=='P' %}selected{% endif %}>Pendiente</option>
-            <option value="C" {% if reserva.estado=='C' %}selected{% endif %}>Confirmada</option>
-            <option value="X" {% if reserva.estado=='X' %}selected{% endif %}>Cancelada</option>
-        </select></p>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div class="mb-3">
+            {{ form.nombre_evento.label_tag }}
+            {{ form.nombre_evento }}
+            {% if form.nombre_evento.errors %}
+                <div class="invalid-feedback d-block">{{ form.nombre_evento.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.espacio.label_tag }}
+            {{ form.espacio }}
+            {% if form.espacio.errors %}
+                <div class="invalid-feedback d-block">{{ form.espacio.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.organizador.label_tag }}
+            {{ form.organizador }}
+            {% if form.organizador.errors %}
+                <div class="invalid-feedback d-block">{{ form.organizador.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.fecha_inicio.label_tag }}
+            {{ form.fecha_inicio }}
+            {% if form.fecha_inicio.errors %}
+                <div class="invalid-feedback d-block">{{ form.fecha_inicio.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.fecha_fin.label_tag }}
+            {{ form.fecha_fin }}
+            {% if form.fecha_fin.errors %}
+                <div class="invalid-feedback d-block">{{ form.fecha_fin.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.estado.label_tag }}
+            {{ form.estado }}
+            {% if form.estado.errors %}
+                <div class="invalid-feedback d-block">{{ form.estado.errors }}</div>
+            {% endif %}
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{% url 'lista_reservas' %}" class="btn btn-secondary">Cancelar</a>
     </form>

@@ -3,12 +3,39 @@
 {% block content %}
 <div class="container-fluid pt-4 px-4">
     <h2>Editar Organizador</h2>
-    <form method="post">
+    <form method="post" novalidate>
         {% csrf_token %}
-        <p>Nombre completo: <input type="text" name="nombre_completo" required class="form-control" value="{{organizador.nombre_completo}}"></p>
-        <p>Institución: <input type="text" name="institucion" class="form-control" value="{{organizador.institucion}}"></p>
-        <p>Teléfono: <input type="text" name="telefono" required class="form-control" value="{{organizador.telefono}}"></p>
-        <p>Correo: <input type="email" name="correo" required class="form-control" value="{{organizador.correo}}"></p>
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+        {% endif %}
+        <div class="mb-3">
+            {{ form.nombre_completo.label_tag }}
+            {{ form.nombre_completo }}
+            {% if form.nombre_completo.errors %}
+                <div class="invalid-feedback d-block">{{ form.nombre_completo.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.institucion.label_tag }}
+            {{ form.institucion }}
+            {% if form.institucion.errors %}
+                <div class="invalid-feedback d-block">{{ form.institucion.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.telefono.label_tag }}
+            {{ form.telefono }}
+            {% if form.telefono.errors %}
+                <div class="invalid-feedback d-block">{{ form.telefono.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {{ form.correo.label_tag }}
+            {{ form.correo }}
+            {% if form.correo.errors %}
+                <div class="invalid-feedback d-block">{{ form.correo.errors }}</div>
+            {% endif %}
+        </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
         <a href="{% url 'lista_organizadores' %}" class="btn btn-secondary">Cancelar</a>
     </form>

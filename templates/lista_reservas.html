@@ -16,7 +16,9 @@
             <td>
                 <a href="{% url 'editar_reserva' r.id %}" class="btn btn-sm btn-warning">Editar</a>
                 <a href="{% url 'confirmar_reserva' r.id %}" class="btn btn-sm btn-success">Confirmar</a>
-                <a href="{% url 'cancelar_reserva' r.id %}" class="btn btn-sm btn-danger">Cancelar</a>
+                <a href="{% url 'cancelar_reserva' r.id %}" class="btn btn-sm btn-secondary">Cancelar</a>
+                <a href="{% url 'eliminar_reserva' r.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                <a href="{% url 'registrar_pago' r.id %}" class="btn btn-sm btn-info">Pago</a>
             </td>
         </tr>
         {% endfor %}

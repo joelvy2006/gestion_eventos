@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Organizador
+from .forms import OrganizadorForm
 
 @login_required
 def lista_organizadores(request):
@@ -10,26 +12,27 @@ def lista_organizadores(request):
 @login_required
 def agregar_organizador(request):
     if request.method == 'POST':
-        Organizador.objects.create(
-            nombre_completo = request.POST['nombre_completo'],
-            institucion = request.POST['institucion'],
-            telefono = request.POST['telefono'],
-            correo = request.POST['correo']
-        )
-        return redirect('lista_organizadores')
-    return render(request, 'agregar_organizador.html')
+        form = OrganizadorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Organizador creado correctamente.')
+            return redirect('lista_organizadores')
+    else:
+        form = OrganizadorForm()
+    return render(request, 'agregar_organizador.html', {'form': form})
 
 @login_required
 def editar_organizador(request, id):
     org = get_object_or_404(Organizador, id=id)
     if request.method == 'POST':
-        org.nombre_completo = request.POST['nombre_completo']
-        org.institucion = request.POST['institucion']
-        org.telefono = request.POST['telefono']
-        org.correo = request.POST['correo']
-        org.save()
-        return redirect('lista_organizadores')
-    return render(request, 'editar_organizador.html', {'organizador': org})
+        form = OrganizadorForm(request.POST, instance=org)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Organizador actualizado correctamente.')
+            return redirect('lista_organizadores')
+    else:
+        form = OrganizadorForm(instance=org)
+    return render(request, 'editar_organizador.html', {'form': form, 'organizador': org})
 
 @login_required
 def eliminar_organizador(request, id):

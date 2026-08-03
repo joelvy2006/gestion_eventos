@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<section class="spad">
+    <div class="container">
+        <div class="section-title center-title">
+            <span>Contacto</span>
+            <h2>Contáctanos</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <form class="contact-form card-dark p-4" method="post" action="#">
+                    <input type="text" name="nombre" placeholder="Nombre" required />
+                    <input type="email" name="correo" placeholder="Correo electronico" required />
+                    <textarea name="mensaje" placeholder="Mensaje" rows="5"></textarea>
+                    <button class="site-btn mt-3">Enviar mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

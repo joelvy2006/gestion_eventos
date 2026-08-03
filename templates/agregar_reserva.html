@@ -1,0 +1,22 @@
+{% extends "base_admin.html" %}
+{% block title %}Agregar Reserva{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Agregar Reserva</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Nombre evento: <input type="text" name="nombre_evento" required class="form-control"></p>
+        <p>Espacio: <select name="espacio" class="form-control">
+            {% for e in espacios %}<option value="{{e.id}}">{{e.nombre}} - {{e.ubicacion}}</option>{% endfor %}
+        </select></p>
+        <p>Organizador: <select name="organizador" class="form-control">
+            {% for o in organizadores %}<option value="{{o.id}}">{{o.nombre_completo}}</option>{% endfor %}
+        </select></p>
+        <p>Fecha inicio: <input type="datetime-local" name="fecha_inicio" class="form-control"></p>
+        <p>Fecha fin: <input type="datetime-local" name="fecha_fin" class="form-control"></p>
+        <p>Estado: <select name="estado" class="form-control"><option value="P">Pendiente</option><option value="C">Confirmada</option></select></p>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'lista_reservas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

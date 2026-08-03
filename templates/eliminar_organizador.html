@@ -1,0 +1,13 @@
+{% extends "base_admin.html" %}
+{% block title %}Eliminar Organizador{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Eliminar Organizador</h2>
+    <p>¿Seguro que deseas eliminar a <strong>{{organizador.nombre_completo}}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'lista_organizadores' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

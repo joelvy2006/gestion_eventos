@@ -1,0 +1,16 @@
+{% extends "base_admin.html" %}
+{% block title %}Editar Organizador{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Editar Organizador</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Nombre completo: <input type="text" name="nombre_completo" required class="form-control" value="{{organizador.nombre_completo}}"></p>
+        <p>Institución: <input type="text" name="institucion" class="form-control" value="{{organizador.institucion}}"></p>
+        <p>Teléfono: <input type="text" name="telefono" required class="form-control" value="{{organizador.telefono}}"></p>
+        <p>Correo: <input type="email" name="correo" required class="form-control" value="{{organizador.correo}}"></p>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'lista_organizadores' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

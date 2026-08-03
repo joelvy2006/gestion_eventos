@@ -22,8 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('inicio.urls')),
     path('espacios/', include('espacios.urls')),
+    path('reservas/', include('reservas.urls')),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('organizadores/', include('organizadores.urls')),
+    path('seguimiento/', include('seguimiento.urls')),
 ]
 

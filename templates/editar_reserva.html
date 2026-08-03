@@ -1,0 +1,30 @@
+{% extends "base_admin.html" %}
+{% block title %}Editar Reserva{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Editar Reserva</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Nombre evento: <input type="text" name="nombre_evento" required class="form-control" value="{{reserva.nombre_evento}}"></p>
+        <p>Espacio: <select name="espacio" class="form-control">
+            {% for e in espacios %}
+                <option value="{{e.id}}" {% if reserva.espacio.id==e.id %}selected{% endif %}>{{e.nombre}} - {{e.ubicacion}}</option>
+            {% endfor %}
+        </select></p>
+        <p>Organizador: <select name="organizador" class="form-control">
+            {% for o in organizadores %}
+                <option value="{{o.id}}" {% if reserva.organizador.id==o.id %}selected{% endif %}>{{o.nombre_completo}}</option>
+            {% endfor %}
+        </select></p>
+        <p>Fecha inicio: <input type="datetime-local" name="fecha_inicio" class="form-control" value="{{reserva.fecha_inicio|date:'Y-m-d\TH:i'}}"></p>
+        <p>Fecha fin: <input type="datetime-local" name="fecha_fin" class="form-control" value="{{reserva.fecha_fin|date:'Y-m-d\TH:i'}}"></p>
+        <p>Estado: <select name="estado" class="form-control">
+            <option value="P" {% if reserva.estado=='P' %}selected{% endif %}>Pendiente</option>
+            <option value="C" {% if reserva.estado=='C' %}selected{% endif %}>Confirmada</option>
+            <option value="X" {% if reserva.estado=='X' %}selected{% endif %}>Cancelada</option>
+        </select></p>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'lista_reservas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base_admin.html" %}
+{% block title %}Reservas{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Reservas</h2>
+    <a href="{% url 'agregar_reserva' %}" class="btn btn-primary mb-3">Agregar Reserva</a>
+    <table class="table table-dark">
+        <tr><th>Evento</th><th>Espacio</th><th>Organizador</th><th>Fechas</th><th>Estado</th><th>Acciones</th></tr>
+        {% for r in reservas %}
+        <tr>
+            <td>{{ r.nombre_evento }}</td>
+            <td>{{ r.espacio.nombre }}</td>
+            <td>{{ r.organizador.nombre_completo }}</td>
+            <td>{{ r.fecha_inicio }} - {{ r.fecha_fin }}</td>
+            <td>{{ r.get_estado_display }}</td>
+            <td>
+                <a href="{% url 'editar_reserva' r.id %}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{% url 'confirmar_reserva' r.id %}" class="btn btn-sm btn-success">Confirmar</a>
+                <a href="{% url 'cancelar_reserva' r.id %}" class="btn btn-sm btn-danger">Cancelar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

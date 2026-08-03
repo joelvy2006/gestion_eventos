@@ -1,0 +1,12 @@
+{% extends "base_admin.html" %}
+{% block title %}Detalle Pago{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Pago para: {{ pago.reserva.nombre_evento }}</h2>
+    <div class="card-dark p-4">
+        <p><strong>Total:</strong> {{ pago.total }}</p>
+        <p><strong>Abono:</strong> {{ pago.abono }}</p>
+        <p><strong>Saldo:</strong> {{ pago.saldo }}</p>
+    </div>
+</div>
+{% endblock %}

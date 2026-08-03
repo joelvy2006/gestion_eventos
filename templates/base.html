@@ -35,12 +35,12 @@
                     <div class="header__nav__option">
                         <nav class="header__nav__menu mobile-menu">
                             <ul>
-                                <li class="{% if request.path == '/' %}active{% endif %}"><a href="/">Inicio</a></li>
-                                <li><a href="/#servicios">Servicios</a></li>
-                                <li><a href="/#equipo">Equipo</a></li>
-                                <li><a href="/#testimonios">Testimonios</a></li>
-                                <li><a href="/#faq">Preguntas</a></li>
-                                <li><a href="/#contacto">Contacto</a></li>
+                                <li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'inicio' %}">Inicio</a></li>
+                                <li><a href="{% url 'servicios' %}">Servicios</a></li>
+                                <li><a href="{% url 'equipo' %}">Equipo</a></li>
+                                <li><a href="{% url 'testimonios' %}">Testimonios</a></li>
+                                <li><a href="{% url 'faq' %}">Preguntas</a></li>
+                                <li><a href="{% url 'contacto' %}">Contacto</a></li>
                                 {% if user.is_authenticated %}
                                 <li><a href="{% url 'lista_espacios' %}">Administración</a></li>
                                 <li>

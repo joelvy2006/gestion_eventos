@@ -1,0 +1,19 @@
+{% extends "base_admin.html" %}
+{% block title %}Pagos y Seguimiento{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Pagos registrados</h2>
+    <table class="table table-dark">
+        <tr><th>Reserva</th><th>Total</th><th>Abono</th><th>Saldo</th><th>Acciones</th></tr>
+        {% for p in pagos %}
+        <tr>
+            <td>{{ p.reserva.nombre_evento }}</td>
+            <td>{{ p.total }}</td>
+            <td>{{ p.abono }}</td>
+            <td>{{ p.saldo }}</td>
+            <td><a href="{% url 'ver_pago' p.id %}" class="btn btn-sm btn-primary">Ver</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

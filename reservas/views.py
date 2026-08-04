@@ -1,11 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework import viewsets
 
 from .models import Reserva
+from .serializers import ReservaSerializer
 from .forms import ReservaForm
 from espacios.models import Espacio
 from organizadores.models import Organizador
+
+
+class ReservaViewSet(viewsets.ModelViewSet):
+    queryset = Reserva.objects.all()
+    serializer_class = ReservaSerializer
 
 
 @login_required

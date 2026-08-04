@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from rest_framework import viewsets
 from .models import Espacio
+from .serializers import EspacioSerializer
+
+class EspacioViewSet(viewsets.ModelViewSet):
+    queryset = Espacio.objects.all()
+    serializer_class = EspacioSerializer
+
 
 def lista_publica(request):
     espacios = Espacio.objects.filter(disponible=True)

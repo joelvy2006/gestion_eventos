@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework import viewsets
 from .models import Organizador
+from .serializers import OrganizadorSerializer
 from .forms import OrganizadorForm
+
+class OrganizadorViewSet(viewsets.ModelViewSet):
+    queryset = Organizador.objects.all()
+    serializer_class = OrganizadorSerializer
+
 
 @login_required
 def lista_organizadores(request):

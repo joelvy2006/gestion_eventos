@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-q_#&wpe+!0e!$)r)q7xn2o36h2k929hmw76ww&zb-8hzzzso&r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'organizadores',
     'reservas',
     'seguimiento',
+    'rest_framework',
+    'corsheaders',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,3 +129,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 LOGIN_REDIRECT_URL = '/espacios/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}

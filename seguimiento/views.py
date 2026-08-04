@@ -1,9 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework import viewsets
 from .models import Pago
-from .forms import PagoForm
+from .serializers import PagoSerializer
 from reservas.models import Reserva
+
+
+class PagoViewSet(viewsets.ModelViewSet):
+    queryset = Pago.objects.all()
+    serializer_class = PagoSerializer
 
 
 @login_required

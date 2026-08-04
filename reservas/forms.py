@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import Q
 from .models import Reserva
 from espacios.models import Espacio
 from organizadores.models import Organizador
@@ -55,6 +56,20 @@ class ReservaForm(forms.ModelForm):
         cleaned_data = super().clean()
         inicio = cleaned_data.get('fecha_inicio')
         fin = cleaned_data.get('fecha_fin')
+        espacio = cleaned_data.get('espacio')
+
         if inicio and fin and fin <= inicio:
             raise forms.ValidationError('La fecha de fin debe ser posterior a la fecha de inicio.')
+
+        if inicio and fin and espacio:
+            qs = Reserva.objects.filter(espacio=espacio)
+            if self.instance.pk:
+                qs = qs.exclude(pk=self.instance.pk)
+
+            overlap = qs.filter(
+                Q(fecha_inicio__lt=fin, fecha_fin__gt=inicio)
+            )
+            if overlap.exists():
+                raise forms.ValidationError('No se puede reservar este espacio porque ya existe otra reserva en ese rango de fechas.')
+
         return cleaned_data

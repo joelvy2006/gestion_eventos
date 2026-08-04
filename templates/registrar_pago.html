@@ -2,7 +2,7 @@
 {% block title %}Registrar Pago{% endblock %}
 {% block content %}
 <div class="container-fluid pt-4 px-4">
-    <h2>Registrar pago para: {{ reserva.nombre_evento }}</h2>
+    <h2>{% if editar %}Editar{% else %}Registrar{% endif %} pago para: {{ reserva.nombre_evento }}</h2>
     <form method="post" novalidate>
         {% csrf_token %}
         {% if form.non_field_errors %}
@@ -22,7 +22,8 @@
                 <div class="invalid-feedback d-block">{{ form.abono.errors }}</div>
             {% endif %}
         </div>
-        <button class="btn btn-primary">Guardar</button>
+        <button class="btn btn-primary">{% if editar %}Actualizar{% else %}Guardar{% endif %}</button>
+        <a href="{% url 'lista_reservas' %}" class="btn btn-secondary ms-2">Cancelar</a>
     </form>
 </div>
 {% endblock %}

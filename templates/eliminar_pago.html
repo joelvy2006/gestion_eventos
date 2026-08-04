@@ -1,0 +1,13 @@
+{% extends "base_admin.html" %}
+{% block title %}Eliminar Pago{% endblock %}
+{% block content %}
+<div class="container-fluid pt-4 px-4">
+    <h2>Eliminar Pago</h2>
+    <p>¿Estás seguro que deseas eliminar el pago para <strong>{{ pago.reserva.nombre_evento }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'lista_pagos' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -19,7 +19,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
 def lista_reservas(request):
     reservas = Reserva.objects.select_related(
         'espacio', 'organizador'
-    ).all()
+    ).prefetch_related('pago').all()
 
     return render(request, 'lista_reservas.html', {
         'reservas': reservas

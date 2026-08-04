@@ -1,6 +1,7 @@
 from django.db import models
 from espacios.models import Espacio
 from organizadores.models import Organizador
+
 class Reserva(models.Model):
     ESTADOS = [('P','Pendiente'),('C','Confirmada'),('X','Cancelada')]
     nombre_evento = models.CharField(max_length=250)
@@ -9,6 +10,12 @@ class Reserva(models.Model):
     fecha_inicio = models.DateTimeField()
     fecha_fin = models.DateTimeField()
     estado = models.CharField(max_length=1, choices=ESTADOS, default='P')
-    def __str__(self): return self.nombre_evento
+
+    def __str__(self):
+        return self.nombre_evento
+
+    @property
+    def has_pago(self):
+        return hasattr(self, 'pago')
 
 # Create your models here.

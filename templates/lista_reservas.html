@@ -23,7 +23,11 @@
                 <a href="{% url 'confirmar_reserva' r.id %}" class="btn btn-sm btn-success">Confirmar</a>
                 <a href="{% url 'cancelar_reserva' r.id %}" class="btn btn-sm btn-secondary">Cancelar</a>
                 <a href="{% url 'eliminar_reserva' r.id %}" class="btn btn-sm btn-danger">Eliminar</a>
-                <a href="{% url 'registrar_pago' r.id %}" class="btn btn-sm btn-info">Pago</a>
+                {% if r.has_pago %}
+                    <a href="{% url 'ver_pago' r.pago.id %}" class="btn btn-sm btn-info">Ver Pago</a>
+                {% else %}
+                    <a href="{% url 'registrar_pago' r.id %}" class="btn btn-sm btn-info">Pago</a>
+                {% endif %}
             </td>
         </tr>
         {% endfor %}

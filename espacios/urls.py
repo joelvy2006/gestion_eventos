@@ -3,11 +3,12 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'api', views.EspacioViewSet, basename='espacios-api')
+router.register(r'', views.EspacioViewSet, basename='espacios-api')
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 
+    path('', views.lista_espacios, name='lista_espacios'),
     path('publico/', views.lista_publica, name='lista_publica'),
     path('lista/', views.lista_espacios, name='lista_espacios'),
     path('agregar/', views.agregar_espacio, name='agregar_espacio'),

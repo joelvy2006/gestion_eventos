@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-LOGIN_REDIRECT_URL = '/espacios/'
+LOGIN_REDIRECT_URL = '/espacios/lista/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 

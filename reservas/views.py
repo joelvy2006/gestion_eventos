@@ -8,6 +8,7 @@ from .serializers import ReservaSerializer
 from .forms import ReservaForm
 from espacios.models import Espacio
 from organizadores.models import Organizador
+from django.utils import timezone
 
 
 class ReservaViewSet(viewsets.ModelViewSet):
@@ -81,9 +82,9 @@ def confirmar_reserva(request, id):
     reserva.estado = 'C'
     reserva.save()
 
-    messages.success(request, 'Reserva confirmada.')
-
-    return redirect('lista_reservas')
+    return render(request, 'confirmar_reserva.html', {
+        'reserva': reserva
+    })
 
 
 @login_required
@@ -110,10 +111,23 @@ def reservar_espacio(request, espacio_id):
         if form.is_valid():
             reserva = form.save(commit=False)
             reserva.espacio = espacio
-            reserva.save()
 
-            messages.success(request, 'Reserva realizada correctamente.')
-            return redirect('inicio')
+            # Comprobar solapamiento de fechas con otras reservas (no canceladas)
+            inicio = reserva.fecha_inicio
+            fin = reserva.fecha_fin
+            conflicto = Reserva.objects.filter(
+                espacio=espacio
+            ).exclude(estado='X').filter(
+                fecha_inicio__lt=fin,
+                fecha_fin__gt=inicio
+            ).exists()
+
+            if conflicto:
+                messages.error(request, 'El espacio NO está disponible en las fechas seleccionadas.')
+            else:
+                reserva.save()
+                messages.success(request, 'Reserva realizada correctamente.')
+                return redirect('inicio')
 
     else:
         form = ReservaForm(initial={
@@ -123,4 +137,38 @@ def reservar_espacio(request, espacio_id):
     return render(request, 'reservar_espacio.html', {
         'form': form,
         'espacio': espacio
+    })
+
+
+def buscar_espacios(request):
+    """Página pública donde el cliente ingresa fechas y obtiene los espacios disponibles."""
+    espacios = []
+    inicio = None
+    fin = None
+
+    if request.method == 'POST':
+        inicio_str = request.POST.get('fecha_inicio')
+        fin_str = request.POST.get('fecha_fin')
+        try:
+            inicio = timezone.datetime.fromisoformat(inicio_str)
+            fin = timezone.datetime.fromisoformat(fin_str)
+        except Exception:
+            messages.error(request, 'Formato de fecha inválido.')
+
+        if inicio and fin and fin <= inicio:
+            messages.error(request, 'La fecha de fin debe ser posterior a la fecha de inicio.')
+        elif inicio and fin:
+            # IDs de espacios con conflicto
+            conflict_ids = Reserva.objects.filter(
+                fecha_inicio__lt=fin,
+                fecha_fin__gt=inicio
+            ).values_list('espacio_id', flat=True)
+
+            espacios = Espacio.objects.filter(disponible=True).exclude(id__in=conflict_ids)
+            if not espacios:
+                messages.info(request, 'No hay espacios disponibles en las fechas seleccionadas.')
+    return render(request, 'buscar_espacios.html', {
+        'espacios': espacios,
+        'fecha_inicio': inicio,
+        'fecha_fin': fin,
     })

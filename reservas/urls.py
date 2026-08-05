@@ -13,6 +13,7 @@ urlpatterns = [
     path('confirmar/<int:id>/', views.confirmar_reserva, name='confirmar_reserva'),
     path('cancelar/<int:id>/', views.cancelar_reserva, name='cancelar_reserva'),
     path('eliminar/<int:id>/', views.eliminar_reserva, name='eliminar_reserva'),
+    path('buscar/', views.buscar_espacios, name='buscar_espacios'),
 
     # Nueva ruta para reservar desde la página pública
     path('reservar/<int:espacio_id>/', views.reservar_espacio, name='reservar_espacio'),

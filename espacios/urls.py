@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('', views.lista_espacios, name='lista_espacios'),
     path('publico/', views.lista_publica, name='lista_publica'),
+    path('detalle/<int:id>/', views.ver_espacio, name='ver_espacio'),
     path('lista/', views.lista_espacios, name='lista_espacios'),
     path('agregar/', views.agregar_espacio, name='agregar_espacio'),
     path('editar/<int:id>/', views.editar_espacio, name='editar_espacio'),

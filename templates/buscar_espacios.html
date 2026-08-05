@@ -29,7 +29,7 @@
                                     <strong>{{ e.nombre }}</strong>
                                     <div class="small">{{ e.tipo }} · Capacidad: {{ e.capacidad }} · ${{ e.costo_hora }}/hora</div>
                                 </div>
-                                <a href="{% url 'reservar_espacio' e.id %}" class="btn btn-sm btn-primary">Reservar</a>
+                                <a href="{% url 'ver_espacio' e.id %}" class="btn btn-sm btn-secondary">Ver lugar</a>
                             </li>
                         {% endfor %}
                         </ul>

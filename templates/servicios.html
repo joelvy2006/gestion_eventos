@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 {% block title %}Servicios{% endblock %}
 {% block content %}
 <section class="spad">
@@ -12,21 +12,161 @@
                 <div class="card-dark p-4 h-100">
                     <h5>Sonido y Audio</h5>
                     <p class="text-muted">Equipo profesional de sonido para conferencias y conciertos.</p>
+                    <button type="button" data-target="paquete-sonido" class="btn btn-outline-light mt-3 btn-service">Ver servicio</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="card-dark p-4 h-100">
                     <h5>Catering</h5>
                     <p class="text-muted">Menús personalizados según el tipo de evento y presupuesto.</p>
+                    <button type="button" data-target="paquete-catering" class="btn btn-outline-light mt-3 btn-service">Ver servicio</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="card-dark p-4 h-100">
                     <h5>Iluminación</h5>
                     <p class="text-muted">Ambientes adaptados con iluminación profesional.</p>
+                    <button type="button" data-target="paquete-iluminacion" class="btn btn-outline-light mt-3 btn-service">Ver servicio</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<section class="spad">
+    <div class="container">
+        <div class="section-title center-title">
+            <span>Elige tu paquete</span>
+            <h2>Paquetes disponibles</h2>
+            <p class="text-muted">Selecciona un servicio para ver sólo sus paquetes.</p>
+        </div>
+
+        <div class="row g-4 mb-5 service-section" id="paquete-sonido">
+            <div class="col-12">
+                <div class="section-title">
+                    <h3>Paquetes de Sonido y Audio</h3>
+                    <p class="text-muted">Escoge el paquete que más te convenga.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Básico</h5>
+                    <p class="text-muted">Sonido para pequeños eventos con equipo esencial.</p>
+                    <p><strong>Incluye:</strong> altavoces, micrófono y mixer.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Profesional</h5>
+                    <p class="text-muted">Sonido para eventos medianos con apoyo técnico.</p>
+                    <p><strong>Incluye:</strong> equipo profesional y técnico.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Completo</h5>
+                    <p class="text-muted">Sonido para grandes eventos con refuerzo total.</p>
+                    <p><strong>Incluye:</strong> audio, monitores y asistencia técnica.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-5 service-section" id="paquete-catering">
+            <div class="col-12">
+                <div class="section-title">
+                    <h3>Paquetes de Catering</h3>
+                    <p class="text-muted">Selecciona el menú ideal para tu evento.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Snack</h5>
+                    <p class="text-muted">Bocadillos ligeros y bebidas.</p>
+                    <p><strong>Incluye:</strong> coffee break, snacks y agua.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Ejecutivo</h5>
+                    <p class="text-muted">Menú completo para reuniones corporativas.</p>
+                    <p><strong>Incluye:</strong> entrada, principal y postre.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Premium</h5>
+                    <p class="text-muted">Servicio completo a la carta.</p>
+                    <p><strong>Incluye:</strong> menú personalizado y bebidas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 service-section" id="paquete-iluminacion">
+            <div class="col-12">
+                <div class="section-title">
+                    <h3>Paquetes de Iluminación</h3>
+                    <p class="text-muted">Define la atmósfera de tu evento.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Ambiental</h5>
+                    <p class="text-muted">Iluminación suave para espacios íntimos.</p>
+                    <p><strong>Incluye:</strong> luces LED y decoración.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Escénico</h5>
+                    <p class="text-muted">Iluminación para presentaciones y shows.</p>
+                    <p><strong>Incluye:</strong> focos, control y montaje.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-dark p-4 h-100">
+                    <h5>Premium</h5>
+                    <p class="text-muted">Iluminación completa con efectos especiales.</p>
+                    <p><strong>Incluye:</strong> luces, efectos y técnico.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .service-section { display: none; }
+    footer.footer { display: none !important; }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.service-section');
+        const buttons = document.querySelectorAll('.btn-service');
+
+        function showSection(id) {
+            sections.forEach(section => {
+                section.style.display = section.id === id ? 'flex' : 'none';
+            });
+            const target = document.getElementById(id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        buttons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const target = this.dataset.target;
+                if (target) {
+                    showSection(target);
+                }
+            });
+        });
+
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            showSection(hash);
+        }
+    });
+</script>
 {% endblock %}

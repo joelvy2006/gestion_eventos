@@ -3,11 +3,6 @@
 {% block content %}
 <div class="container-fluid pt-4 px-4">
     <h2>Reservas</h2>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
     <a href="{% url 'agregar_reserva' %}" class="btn btn-primary mb-3">Agregar Reserva</a>
     <table class="table table-dark">
         <tr><th>Evento</th><th>Espacio</th><th>Organizador</th><th>Fechas</th><th>Estado</th><th>Acciones</th></tr>

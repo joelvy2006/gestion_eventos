@@ -31,37 +31,45 @@
                     </h4>
 
 
-                    {% for e in espacios %}
+                    {% if espacios %}
+                        {% for e in espacios|slice:":2" %}
 
-                    <div class="mb-3 border-bottom pb-3">
+                        <div class="mb-3 border-bottom pb-3">
 
-                        <h6 class="mb-1">
-                            {{ e.nombre }}
-                        </h6>
-
-
-                        <p class="mb-2 text-muted">
-                            {{ e.tipo }} 
-                            · Capacidad: {{ e.capacidad }} 
-                            · ${{ e.costo_hora }}/hora
-                        </p>
+                            <h6 class="mb-1">
+                                {{ e.nombre }}
+                            </h6>
 
 
-                        <a href="{% url 'reservar_espacio' e.id %}" 
-                           class="btn btn-primary btn-sm">
-                            Reservar
-                        </a>
+                            <p class="mb-2 text-muted">
+                                {{ e.tipo }} 
+                                · Capacidad: {{ e.capacidad }} 
+                                · ${{ e.costo_hora }}/hora
+                            </p>
 
-                    </div>
 
+                            <a href="{% url 'ver_espacio' e.id %}" 
+                               class="btn btn-secondary btn-sm">
+                                Ver lugar
+                            </a>
 
-                    {% empty %}
+                        </div>
+
+                        {% endfor %}
+
+                        {% if espacios|length > 2 %}
+                        <div class="text-center mt-3">
+                            <a href="{% url 'lista_publica' %}" class="btn btn-outline-light">Ver más espacios</a>
+                        </div>
+                        {% endif %}
+
+                    {% else %}
 
                     <p class="mb-0 text-muted">
                         No hay espacios disponibles por ahora.
                     </p>
 
-                    {% endfor %}
+                    {% endif %}
 
 
                 </div>

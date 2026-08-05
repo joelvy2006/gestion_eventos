@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
@@ -10,8 +11,33 @@ class EspacioViewSet(viewsets.ModelViewSet):
 
 
 def lista_publica(request):
+    query = request.GET.get('q', '').strip()
     espacios = Espacio.objects.filter(disponible=True)
-    return render(request, 'lista_publica.html', {'espacios': espacios})
+
+    if query:
+        espacios = espacios.filter(
+            Q(nombre__icontains=query) |
+            Q(tipo__icontains=query) |
+            Q(ubicacion__icontains=query)
+        )
+
+    return render(request, 'lista_publica.html', {
+        'espacios': espacios,
+        'query': query,
+    })
+
+
+def ver_espacio(request, id):
+    espacio = get_object_or_404(Espacio, id=id)
+    photos = [
+        'img/portfolio/portfolio-1.jpg',
+        'img/portfolio/portfolio-2.jpg',
+        'img/portfolio/portfolio-3.jpg'
+    ]
+    return render(request, 'ver_espacio.html', {
+        'espacio': espacio,
+        'photos': photos
+    })
 
 @login_required
 def lista_espacios(request):

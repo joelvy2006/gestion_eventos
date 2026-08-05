@@ -26,7 +26,9 @@ class PagoForm(forms.ModelForm):
     def __init__(self, *args, disable_total=False, **kwargs):
         super().__init__(*args, **kwargs)
         if disable_total:
-            self.fields['total'].disabled = True
+            self.fields['total'].widget.attrs['readonly'] = True
+            self.fields['total'].widget.attrs['class'] += ' bg-dark text-white'
+            self.fields['total'].widget.attrs['style'] = 'background-color: #000; color: #fff;'
 
     def clean(self):
         cleaned_data = super().clean()

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ espacio.nombre }}{% endblock %}
+
+{% block content %}
+<section class="breadcrumb-option spad set-bg" style="background: linear-gradient(135deg, #111, #1a1a1a);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>{{ espacio.nombre }}</h2>
+                    <div class="breadcrumb__links">
+                        <a href="/">Inicio</a>
+                        <a href="{% url 'lista_publica' %}">Espacios</a>
+                        <span>{{ espacio.nombre }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="spad">
+    <div class="container">
+        <div class="row g-4 mb-4">
+            <div class="col-lg-8">
+                <div class="row g-3">
+                    {% for photo in photos %}
+                        <div class="col-md-6">
+                            <div class="card-dark overflow-hidden">
+                                <img src="{% static photo %}" class="img-fluid" alt="Foto {{ espacio.nombre }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-dark p-4 h-100">
+                    <h4 class="mb-3">Detalles del lugar</h4>
+                    <p><strong>Nombre:</strong> {{ espacio.nombre }}</p>
+                    <p><strong>Tipo:</strong> {{ espacio.tipo }}</p>
+                    <p><strong>Capacidad:</strong> {{ espacio.capacidad }} personas</p>
+                    <p><strong>Costo:</strong> ${{ espacio.costo_hora }}/hora</p>
+                    <p><strong>Ubicación:</strong> {{ espacio.ubicacion }}</p>
+                    <p class="text-muted">Aquí puedes conocer el espacio, ver fotos y revisar sus características antes de decidir.</p>
+                    <a href="{% url 'lista_publica' %}" class="site-btn mt-3">Volver a espacios</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card-dark p-4">
+                    <h5>Más información</h5>
+                    <p class="text-muted mb-0">Disfruta de un espacio bien equipado y cómodo para tus eventos. Si necesitas apoyo extra, contáctanos y te ayudamos a organizar la mejor experiencia.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
